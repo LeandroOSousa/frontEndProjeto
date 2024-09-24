@@ -5,7 +5,7 @@ import AppMenuitem from './AppMenuitem';
 import { LayoutContext } from './context/layoutcontext';
 import { MenuProvider } from './context/menucontext';
 import Link from 'next/link';
-import { AppMenuItem } from '@/types';
+import { AppMenuItem } from '../types/types';
 
 const AppMenu = () => {
     const { layoutConfig } = useContext(LayoutContext);
@@ -154,12 +154,6 @@ const AppMenu = () => {
                     label: 'Documentation',
                     icon: 'pi pi-fw pi-question',
                     to: '/documentation'
-                },
-                {
-                    label: 'Figma',
-                    url: 'https://www.dropbox.com/scl/fi/bhfwymnk8wu0g5530ceas/sakai-2023.fig?rlkey=u0c8n6xgn44db9t4zkd1brr3l&dl=0',
-                    icon: 'pi pi-fw pi-pencil',
-                    target: '_blank'
                 },
                 {
                     label: 'View Source',

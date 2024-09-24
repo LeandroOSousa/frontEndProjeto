@@ -5,6 +5,5 @@ declare namespace Projeto {
         login: string;
         password: string;
         email: string;
-
     };
 }

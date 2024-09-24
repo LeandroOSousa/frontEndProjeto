@@ -8,20 +8,20 @@ const Documentation = () => {
                 <div className="col-12">
                     <div className="card docs">
                         <h4>Current Version</h4>
-                        <p>Next v13, React v18, Typescript with PrimeReact v10</p>
+                        <p>Next v13, React v18 with PrimeReact v9</p>
 
                         <h5>Getting Started</h5>
                         <p>
                             Sakai is an application template for React based on the popular{' '}
-                            <a href="https://nextjs.org/" className="font-medium hover:underline text-primary">
-                                Next.js
+                            <a href="https://nextjs.org/" className="font-medium hover:underline">
+                                NextJS
                             </a>{' '}
                             framework with new{' '}
-                            <a href="https://nextjs.org/docs/app" className="font-medium hover:underline text-primary">
+                            <a href="https://nextjs.org/docs/app" className="font-medium hover:underline">
                                 App Router
                             </a>
                             . To get started, clone the{' '}
-                            <a href="https://github.com/primefaces/sakai-react" className="font-medium hover:underline text-primary">
+                            <a href="https://github.com/primefaces/sakai-react" className="font-medium hover:underline">
                                 repository
                             </a>{' '}
                             from GitHub and install the dependencies with npm or yarn.
@@ -53,8 +53,8 @@ const Documentation = () => {
                         <p>Sakai consist of a couple of folders where demos and core layout have been separated.</p>
                         <p>
                             There are two{' '}
-                            <a href="https://nextjs.org/docs/app/building-your-application/routing/route-groups" className="font-medium hover:underline text-primary">
-                                route groups
+                            <a href="https://nextjs.org/docs/app/building-your-application/routing/route-groups" className="font-medium hover:underline">
+                                root groups
                             </a>{' '}
                             under the app folder; <span className="text-primary font-medium">{`(main)`}</span> represents the pages that reside in the main dashboard layout whereas <span className="text-primary font-medium">{`(full-page)`}</span>{' '}
                             groups the pages with full page content such as landing page or a login page.
@@ -136,7 +136,7 @@ interface MainLayoutProps {
 }
 
 export const metadata: Metadata = {
-    title: "Sakai by PrimeReact | Free Admin Template for Next.js",
+    title: "Sakai by PrimeReact | Free Admin Template for NextJS",
     ...
   };
 
@@ -161,7 +161,7 @@ interface FullPageLayoutProps {
 }
 
 export const metadata: Metadata = {
-    title: "Sakai by PrimeReact | Free Admin Template for Next.js",
+    title: "Sakai by PrimeReact | Free Admin Template for NextJS",
     ...
   };
 
@@ -204,15 +204,18 @@ export const LayoutProvider = (props) => {
                         <h5>Menu</h5>
                         <p>
                             Main menu is defined at <span className="text-primary font-medium">AppMenu.js</span> file based on{' '}
-                            <a href="https://www.primefaces.org/primereact/menumodel/" className="font-medium hover:underline text-primary">
+                            <a href="https://www.primefaces.org/primereact/menumodel/" className="font-medium hover:underline">
                                 MenuModel API
                             </a>
                             .
                         </p>
 
+                        <h5>Integration with Existing NextJS Applications</h5>
+                        <p>Only the folders related to the layout need to be moved into your project. Integration of pages involves moving the files under those folders. Make sure that the using page is defined under the related group layout.</p>
+
                         <h5>PrimeReact Theme</h5>
                         <p>
-                            Sakai theming is based on the PrimeReact theme being used.
+                            Sakai theming is based on the PrimeReact theme being used. Default theme is <b>lara-light-indigo</b>.
                         </p>
 
                         <h5>SASS Variables</h5>

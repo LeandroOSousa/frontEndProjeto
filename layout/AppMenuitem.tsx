@@ -1,4 +1,4 @@
-'use client';
+'use client'
 import { useRouter } from 'next/navigation';
 import Link from 'next/link';
 import { Ripple } from 'primereact/ripple';
@@ -6,8 +6,9 @@ import { classNames } from 'primereact/utils';
 import React, { useEffect, useContext } from 'react';
 import { CSSTransition } from 'react-transition-group';
 import { MenuContext } from './context/menucontext';
-import { AppMenuItemProps } from '@/types';
-import { usePathname, useSearchParams } from 'next/navigation';
+import { AppMenuItemProps } from '../types/types';
+import { usePathname, useSearchParams } from 'next/navigation'
+
 
 const AppMenuitem = (props: AppMenuItemProps) => {
     const pathname = usePathname();
@@ -23,9 +24,10 @@ const AppMenuitem = (props: AppMenuItemProps) => {
         }
     };
 
+
     useEffect(() => {
         onRouteChange(pathname);
-        // eslint-disable-next-line react-hooks/exhaustive-deps
+    // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [pathname, searchParams]);
 
     const itemClick = (event: React.MouseEvent<HTMLAnchorElement, MouseEvent>) => {
