@@ -169,13 +169,13 @@ const Crud = () => {
     //         setUser(_user);
     //     };
 
-    //     const onInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>, name: string) => {
-    //         const val = (e.target && e.target.value) || '';
-    //         let _user = { ...user };
-    //         _user[`${name}`] = val;
+           const onInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>, name: string) => {
+               const val = (e.target && e.target.value) || '';
+               let _user = { ...user };
+               _user[`${name}`] = val;
 
-    //         setUser(_user);
-    //     };
+               setUser(_user);
+           };
 
     //     const onInputNumberChange = (e: InputNumberValueChangeEvent, name: string) => {
     //         const val = e.value || 0;
@@ -204,6 +204,15 @@ const Crud = () => {
             </React.Fragment>
         );
     };
+    
+    const idBodyTemplate = (rowData: Projeto.User) => {
+        return (
+            <>
+                <span className="p-column-title">Código</span>
+                {rowData.id}
+            </>
+        );
+    };
 
     const nameBodyTemplate = (rowData: Projeto.User) => {
         return (
@@ -214,38 +223,20 @@ const Crud = () => {
         );
     };
 
-    const imageBodyTemplate = (rowData: Projeto.User) => {
+    const loginBodyTemplate = (rowData: Projeto.User) => {
         return (
             <>
-                <span className="p-column-title">Image</span>
-                <img src={`/demo/images/user/${rowData.image}`} alt={rowData.image} className="shadow-2" width="100" />
+                <span className="p-column-title">Login</span>
+                {rowData.login}
             </>
         );
     };
 
-    // const categoryBodyTemplate = (rowData: Projeto.User) => {
-    //     return (
-    //         <>
-    //             <span className="p-column-title">Category</span>
-    //             {rowData.category}
-    //         </>
-    //     );
-    // };
-
-    const ratingBodyTemplate = (rowData: Projeto.User) => {
+    const emailBodyTemplate = (rowData: Projeto.User) => {
         return (
             <>
-                <span className="p-column-title">Reviews</span>
-                <Rating value={rowData.rating} readOnly cancel={false} />
-            </>
-        );
-    };
-
-    const statusBodyTemplate = (rowData: Projeto.User) => {
-        return (
-            <>
-                <span className="p-column-title">Status</span>
-                <span className={`user-badge status-${rowData.inventoryStatus?.toLowerCase()}`}>{rowData.inventoryStatus}</span>
+                <span className="p-column-title">Email</span>
+                {rowData.email}
             </>
         );
     };
@@ -261,7 +252,7 @@ const Crud = () => {
 
     const header = (
         <div className="flex flex-column md:flex-row md:justify-content-between md:align-items-center">
-            <h5 className="m-0">Manage Users</h5>
+            <h5 className="m-0">Gerenciamento de Usuários</h5>
             <span className="block mt-2 md:mt-0 p-input-icon-left">
                 <i className="pi pi-search" />
                 <InputText type="search" onInput={(e) => setGlobalFilter(e.currentTarget.value)} placeholder="Search..." />
@@ -271,20 +262,20 @@ const Crud = () => {
 
     const userDialogFooter = (
         <>
-            <Button label="Cancel" icon="pi pi-times" text onClick={hideDialog} />
-            <Button label="Save" icon="pi pi-check" text onClick={saveUser} />
+            <Button label="Cancelar" icon="pi pi-times" text onClick={hideDialog} />
+            <Button label="Salvar" icon="pi pi-check" text onClick={saveUser} />
         </>
     );
     const deleteUserDialogFooter = (
         <>
-            <Button label="No" icon="pi pi-times" text onClick={hideDeleteUserDialog} />
-            <Button label="Yes" icon="pi pi-check" text onClick={deleteUser} />
+            <Button label="Não" icon="pi pi-times" text onClick={hideDeleteUserDialog} />
+            <Button label="Sim" icon="pi pi-check" text onClick={deleteUser} />
         </>
     );
     const deleteUsersDialogFooter = (
         <>
-            <Button label="No" icon="pi pi-times" text onClick={hideDeleteUsersDialog} />
-            <Button label="Yes" icon="pi pi-check" text onClick={deleteSelectedUsers} />
+            <Button label="Não" icon="pi pi-times" text onClick={hideDeleteUsersDialog} />
+            <Button label="Sim" icon="pi pi-check" text onClick={deleteSelectedUsers} />
         </>
     );
 
@@ -306,27 +297,24 @@ const Crud = () => {
                         rowsPerPageOptions={[5, 10, 25]}
                         className="datatable-responsive"
                         paginatorTemplate="FirstPageLink PrevPageLink PageLinks NextPageLink LastPageLink CurrentPageReport RowsPerPageDropdown"
-                        currentPageReportTemplate="Showing {first} to {last} of {totalRecords} users"
+                        currentPageReportTemplate="Mostrandro {first} até {last} de {totalRecords} usuários"
                         globalFilter={globalFilter}
-                        emptyMessage="No users found."
+                        emptyMessage="Nenhum usuário encontrado."
                         header={header}
                         responsiveLayout="scroll"
                     >
                         <Column selectionMode="multiple" headerStyle={{ width: '4rem' }}></Column>
-                        <Column field="code" header="Code" sortable body={codeBodyTemplate} headerStyle={{ minWidth: '15rem' }}></Column>
-                        <Column field="name" header="Name" sortable body={nameBodyTemplate} headerStyle={{ minWidth: '15rem' }}></Column>
-                        <Column header="Image" body={imageBodyTemplate}></Column>
-                        <Column field="price" header="Price" body={priceBodyTemplate} sortable></Column>
-                        <Column field="category" header="Category" sortable body={categoryBodyTemplate} headerStyle={{ minWidth: '10rem' }}></Column>
-                        <Column field="rating" header="Reviews" body={ratingBodyTemplate} sortable></Column>
-                        <Column field="inventoryStatus" header="Status" body={statusBodyTemplate} sortable headerStyle={{ minWidth: '10rem' }}></Column>
+                        <Column field="id" header="Código" sortable body={idBodyTemplate} headerStyle={{ minWidth: '15rem' }}></Column>
+                        <Column field="name" header="Nome" sortable body={nameBodyTemplate} headerStyle={{ minWidth: '15rem' }}></Column>
+                        <Column field="login" header="Login" sortable body={loginBodyTemplate} headerStyle={{ minWidth: '15rem' }}></Column>
+                        <Column field="email" header="Email" sortable body={emailBodyTemplate} headerStyle={{ minWidth: '15rem' }}></Column>
+                        
                         <Column body={actionBodyTemplate} headerStyle={{ minWidth: '10rem' }}></Column>
                     </DataTable>
 
-                    <Dialog visible={userDialog} style={{ width: '450px' }} header="User Details" modal className="p-fluid" footer={userDialogFooter} onHide={hideDialog}>
-                        {user.image && <img src={`/demo/images/user/${user.image}`} alt={user.image} width="150" className="mt-0 mx-auto mb-5 block shadow-2" />}
+                    <Dialog visible={userDialog} style={{ width: '450px' }} header="Detalhes de Usuário" modal className="p-fluid" footer={userDialogFooter} onHide={hideDialog}>
                         <div className="field">
-                            <label htmlFor="name">Name</label>
+                            <label htmlFor="name">Nome</label>
                             <InputText
                                 id="name"
                                 value={user.name}
@@ -337,45 +325,55 @@ const Crud = () => {
                                     'p-invalid': submitted && !user.name
                                 })}
                             />
-                            {submitted && !user.name && <small className="p-invalid">Name is required.</small>}
-                        </div>
-                        <div className="field">
-                            <label htmlFor="description">Description</label>
-                            <InputTextarea id="description" value={user.description} onChange={(e) => onInputChange(e, 'description')} required rows={3} cols={20} />
+                            {submitted && !user.name && <small className="p-invalid">Nome é obrigatório.</small>}
                         </div>
 
                         <div className="field">
-                            <label className="mb-3">Category</label>
-                            <div className="formgrid grid">
-                                <div className="field-radiobutton col-6">
-                                    <RadioButton inputId="category1" name="category" value="Accessories" onChange={onCategoryChange} checked={user.category === 'Accessories'} />
-                                    <label htmlFor="category1">Accessories</label>
-                                </div>
-                                <div className="field-radiobutton col-6">
-                                    <RadioButton inputId="category2" name="category" value="Clothing" onChange={onCategoryChange} checked={user.category === 'Clothing'} />
-                                    <label htmlFor="category2">Clothing</label>
-                                </div>
-                                <div className="field-radiobutton col-6">
-                                    <RadioButton inputId="category3" name="category" value="Electronics" onChange={onCategoryChange} checked={user.category === 'Electronics'} />
-                                    <label htmlFor="category3">Electronics</label>
-                                </div>
-                                <div className="field-radiobutton col-6">
-                                    <RadioButton inputId="category4" name="category" value="Fitness" onChange={onCategoryChange} checked={user.category === 'Fitness'} />
-                                    <label htmlFor="category4">Fitness</label>
-                                </div>
-                            </div>
+                            <label htmlFor="login">Login</label>
+                            <InputText
+                                id="login"
+                                value={user.login}
+                                onChange={(e) => onInputChange(e, 'login')}
+                                required
+                                autoFocus
+                                className={classNames({
+                                    'p-invalid': submitted && !user.login
+                                })}
+                            />
+                            {submitted && !user.login && <small className="p-invalid">Login é obrigatório.</small>}
                         </div>
 
-                        <div className="formgrid grid">
-                            <div className="field col">
-                                <label htmlFor="price">Price</label>
-                                <InputNumber id="price" value={user.price} onValueChange={(e) => onInputNumberChange(e, 'price')} mode="currency" currency="USD" locale="en-US" />
-                            </div>
-                            <div className="field col">
-                                <label htmlFor="quantity">Quantity</label>
-                                <InputNumber id="quantity" value={user.quantity} onValueChange={(e) => onInputNumberChange(e, 'quantity')} />
-                            </div>
+                        <div className="field">
+                            <label htmlFor="password">Senha</label>
+                            <InputText
+                                id="password"
+                                value={user.name}
+                                onChange={(e) => onInputChange(e, 'password')}
+                                required
+                                autoFocus
+                                className={classNames({
+                                    'p-invalid': submitted && !user.password
+                                })}
+                            />
+                            {submitted && !user.password && <small className="p-invalid">Senha é obrigatório.</small>}
                         </div>
+
+                        <div className="field">
+                            <label htmlFor="email">Email</label>
+                            <InputText
+                                id="email"
+                                value={user.email}
+                                onChange={(e) => onInputChange(e, 'email')}
+                                required
+                                autoFocus
+                                className={classNames({
+                                    'p-invalid': submitted && !user.email
+                                })}
+                            />
+                            {submitted && !user.email && <small className="p-invalid">Email é obrigatório.</small>}
+                        </div>
+
+                       
                     </Dialog>
 
                     <Dialog visible={deleteUserDialog} style={{ width: '450px' }} header="Confirm" modal footer={deleteUserDialogFooter} onHide={hideDeleteUserDialog}>
@@ -383,7 +381,7 @@ const Crud = () => {
                             <i className="pi pi-exclamation-triangle mr-3" style={{ fontSize: '2rem' }} />
                             {user && (
                                 <span>
-                                    Are you sure you want to delete <b>{user.name}</b>?
+                                    Você realmente deseja excluir o usuário<b>{user.name}</b>?
                                 </span>
                             )}
                         </div>
@@ -392,7 +390,7 @@ const Crud = () => {
                     <Dialog visible={deleteUsersDialog} style={{ width: '450px' }} header="Confirm" modal footer={deleteUsersDialogFooter} onHide={hideDeleteUsersDialog}>
                         <div className="flex align-items-center justify-content-center">
                             <i className="pi pi-exclamation-triangle mr-3" style={{ fontSize: '2rem' }} />
-                            {user && <span>Are you sure you want to delete the selected users?</span>}
+                            {user && <span>Você realmente deseja excluir os usuários selecionados?</span>}
                         </div>
                     </Dialog>
                 </div>
