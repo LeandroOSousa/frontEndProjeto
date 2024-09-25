@@ -1,9 +1,9 @@
 declare namespace Projeto {
-    type User = {
+    type Usuario = {
         id?: number;
-        name: string;
+        nome: string;
         login: string;
-        password: string;
+        senha: string;
         email: string;
     };
 }
